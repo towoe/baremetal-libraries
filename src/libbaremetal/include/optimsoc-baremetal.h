@@ -83,9 +83,10 @@
  * \param id The identifier of the trace (static value)
  * \param v  The value of the trace event
  */
-#define OPTIMSOC_TRACE(id,v)                     \
+#define OPTIMSOC_TRACE(id,v) do {                \
         asm("l.addi\tr3,%0,0": :"r" (v) : "r3"); \
-        asm("l.nop %0": :"K" (id));
+        asm("l.nop %0": :"K" (id));              \
+        } while(0)
 
 /**
  * Define a section for the software tracing
